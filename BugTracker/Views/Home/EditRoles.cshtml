@@ -1,0 +1,70 @@
+﻿@model BugTracker.Models.ApplicationUser
+@using Microsoft.AspNet.Identity.EntityFramework
+@using BugTracker.Controllers
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Edit Roles Page";
+}
+<h2>Edit A User's Roles</h2>
+
+<br /><br /><br />
+
+@Html.Raw("First Name: ")
+@Html.DisplayFor(model => model.FirstName)   @*Continue modifying the others in this way!!!!!*@
+<br />
+@Html.Raw("Last Name: ")
+@Html.DisplayFor(model => model.LastName)
+<br>
+@Html.Raw("E-mail Address: ")
+@Html.DisplayFor(model => model.Email)
+
+<div>
+    <h3> User's Roles</h3>
+    @Html.DropDownList("UsersRoles", (IEnumerable<SelectListItem>)ViewBag.MyRoles)
+</div>
+<hr />
+
+@using (Html.BeginForm("EditRoles", "Home"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.Hidden("User", Model.Id)
+        </div>
+
+        <div class="form-group">
+            <h3> Roles List</h3>
+            @Html.DropDownList("Role", (IEnumerable<SelectListItem>)ViewBag.Roles, " ")
+        </div>
+
+        <div class="form-group">
+            Add user to role: @Html.RadioButton("Operation", "Add", isChecked: false) <br />
+            Remove user from role: @Html.RadioButton("Operation", "Delete", isChecked: false)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<br /><br />
+
+
+
+
+
+
+
+

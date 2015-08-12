@@ -1,0 +1,215 @@
+﻿@model BugTracker.Models.Ticket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ticket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.Name)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.TicketTypeId)*@
+            Ticket Type:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TicketType.Name)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.TicketPriorityId)*@
+            Ticket Priority:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TicketPriority.Name)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.TicketStatusId)*@
+            Ticket Status:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TicketStatus.Name)
+        </dd>
+
+        <dt>
+            Owner:
+            @*@Html.DisplayNameFor(model => model.OwnerUser)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerUser.DisplayName)
+        </dd>
+
+        <dt>
+            Assigned To:
+            @*@Html.DisplayNameFor(model => model.AssignedToUser)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignedToUser.DisplayName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (User.IsInRole("Admin") || User.IsInRole("Project Manager") || (User.IsInRole("Developer") && Model.AssignedToUserId == ViewBag.UserId))
+    {
+        @Html.ActionLink("Edit ", "Edit", new { id = Model.Id });
+        <span> | </span>
+    }
+    @if (User.IsInRole("Admin") || User.IsInRole("Project Manager") || User.IsInRole("Developer"))
+    {
+        @Html.ActionLink("Project List", "Index", "Projects");
+        <span> | </span>
+    }
+    @Html.ActionLink("Ticket List", "Index")
+
+
+
+
+
+
+    @if (ViewBag.CreateAllowed)
+    {
+        <span> | </span>
+        @Html.ActionLink("Add Comment", "Create", "TicketComments", new { id = Model.Id, allowed = ViewBag.CreateAllowed }, null);
+
+        <br /> <br />
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Attachments</h4>
+
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.Id)
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Description", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Editor("Description", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("File.Upload", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" id="fileUpload" name="fileUpload" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    }
+</p>
+
+<h3>Comments</h3>
+<table class="table">
+    @*@<tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Author.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Post.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Body)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Updated)
+            </th>
+            <th></th>
+        </tr>*@
+
+
+    @foreach (var item in Model.Comments)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.DisplayName)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Post.Title)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+
+                Created:
+
+                @Html.Raw(item.Created.ToString("f"))
+
+            </td>
+            @*<td>
+                    @if (item.Updated != null)
+                    {
+                        @Html.Raw("Updated: ")
+
+                        @Html.Raw(item.Updated.Value.ToString("f"))
+                    }
+                </td>*@
+            @*<td>
+                    @if ((ViewContext.HttpContext.User.IsInRole("Admin") || (ViewContext.HttpContext.User.IsInRole("Mod"))))
+                    {
+                        @Html.ActionLink("Edit | ", "Edit", "Comments", new { id = item.Id }, null)
+                        @Html.ActionLink("Delete", "Delete", "Comments", new { id = item.Id }, null)
+                    }
+                </td>*@
+        </tr>
+    }
+
+</table>

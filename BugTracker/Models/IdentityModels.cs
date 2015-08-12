@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BugTracker.Models
 {
@@ -14,13 +15,13 @@ namespace BugTracker.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string DisplayName { get; set; }
-        public virtual ICollection<Project>Projects { get; set; }
 
         public ApplicationUser()
         {
             this.Projects = new HashSet<Project>();
+            this.TicketsOwned = new HashSet<Ticket>();
+            this.TicketsAssigned = new HashSet<Ticket>();
             //this.TicketNotifications = new HashSet<TicketNotification>();
-            //this.Tickets = new HashSet<Ticket>();
             //this.Comments = new HashSet<TicketComment>();
             //this.Attachments = new HashSet<TicketAttachment>();
             //this.Histories = new HashSet<TicketHistory>();
@@ -32,12 +33,17 @@ namespace BugTracker.Models
             // Add custom user claims here
             return userIdentity;
         }
-        //public virtual ICollection<Project>Projects { get; set; }
+
+        public virtual ICollection<Project> Projects { get; set; }
+        [InverseProperty("OwnerUser")]
+        public virtual ICollection<Ticket> TicketsOwned { get; set; }
+        [InverseProperty("AssignedToUser")]
+        public virtual ICollection<Ticket> TicketsAssigned { get; set; }
         //public virtual ICollection<TicketNotification>TicketNotifications { get; set; }
-        //public virtual ICollection<Ticket> Tickets { get; set; }
         //public virtual ICollection<TicketComment> Comments { get; set; }
         //public virtual ICollection<TicketAttachment> Attachments { get; set; }
         //public virtual ICollection<TicketHistory> Histories { get; set; }
+        
 
         
     }
@@ -64,5 +70,7 @@ namespace BugTracker.Models
         public DbSet<TicketHistory> TicketHistories { get; set; }
         public DbSet<TicketNotification> TicketNotifications { get; set; }
         public DbSet<Project> Projects { get; set; }
+
+        //public System.Data.Entity.DbSet<BugTracker.Models.ApplicationUser> Users { get; set; }
     }
 }

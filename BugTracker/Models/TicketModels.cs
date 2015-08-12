@@ -15,20 +15,28 @@ namespace BugTracker.Models
             this.Comments = new HashSet<TicketComment>();
             this.Attachments = new HashSet<TicketAttachment>();
             this.Histories = new HashSet<TicketHistory>();
+            this.TicketNotifications = new HashSet<TicketNotification>();
         }
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTimeOffset Created { get; set; }
         public Nullable<DateTimeOffset> Updated { get; set; }
-        public virtual int ProjectId { get; set; }
-        public virtual int TicketTypeId { get; set; }
-        public virtual int TicketPriorityId { get; set; }
-        public virtual int TicketStatusId { get; set; }
-        public virtual string OwnerUserId { get; set; }
-        public virtual string AssignedToUserId { get; set; }
+        public int ProjectId { get; set; }
+        public int TicketTypeId { get; set; }
+        public int TicketPriorityId { get; set; }
+        public int TicketStatusId { get; set; }
+        public string OwnerUserId { get; set; }
+        public string AssignedToUserId { get; set; }
+        public virtual Project Project { get; set; }
+        public virtual ApplicationUser OwnerUser { get; set; }
+        public virtual ApplicationUser AssignedToUser { get; set; }
+        public virtual TicketType TicketType { get; set; }
+        public virtual TicketPriority TicketPriority {get; set;}
+        public virtual TicketStatus TicketStatus { get; set; }
         public virtual ICollection<TicketComment> Comments { get; set; }
         public virtual ICollection<TicketAttachment> Attachments { get; set; }
         public virtual ICollection<TicketHistory> Histories { get; set; }
+        public virtual ICollection<TicketNotification> TicketNotifications { get; set; }
     }
 }

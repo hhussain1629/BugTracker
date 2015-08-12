@@ -17,8 +17,8 @@ namespace BugTracker.Models
         }
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTimeOffset? Begun { get; set; }
-        public DateTimeOffset? Discontinued { get; set; }
+        //public DateTimeOffset? Begun { get; set; }
+        //public DateTimeOffset? Discontinued { get; set; }
         public virtual ICollection<ApplicationUser> Users { get; set; }
         public virtual ICollection<Ticket> Tickets { get; set; }
     }

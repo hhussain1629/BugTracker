@@ -4,6 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="/DataTables-1.10.7/media/css/jquery.dataTables.css">
+    <!-- jQuery -->
+    @*<script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.js"></script>*@
+    <!-- DataTables -->
+    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -23,10 +29,18 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
+                    @if ((User.IsInRole("Admin")) || (User.IsInRole("Project Manager")) || User.IsInRole("Developer"))
+                    {
+                        <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
+                    }
+                    
                     @if (ViewContext.HttpContext.User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("Personnel", "PersonnelView", "Home")</li>
+                        <li>@Html.ActionLink("Personnel", "Personnel", "Home")</li>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Tickets", "Index", "Tickets")</li>
                     }
 
 
@@ -46,6 +60,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

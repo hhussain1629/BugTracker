@@ -12,8 +12,10 @@ namespace BugTracker.Models
         public string FilePath { get; set; }
         public string Description { get; set; }
         public DateTimeOffset Created { get; set; }
-        public virtual int TicketId { get; set; }
-        public virtual string UserId { get; set; }
+        public int TicketId { get; set; }
+        public string UserId { get; set; }
         public string FileUrl { get; set; }
+        public virtual Ticket Ticket { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

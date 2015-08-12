@@ -106,4 +106,17 @@ namespace BugTracker
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }
+
+    // Configure the application role manager used in this application.
+    public class ApplicationRoleManager : RoleManager<IdentityRole> 
+    {
+        public ApplicationRoleManager(IRoleStore<IdentityRole, string> store) : base(store)
+        { 
+        }
+        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+        { 
+            var rolestore = new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>());
+            return new ApplicationRoleManager(rolestore);
+        }
+    }
 }

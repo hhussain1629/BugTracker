@@ -63,33 +63,61 @@ namespace BugTracker.Migrations
             var userId = userManager.FindByEmail("hhussain1629@gmail.com").Id;
             userManager.AddToRole(userId, "Admin");
 
-            if (!context.Users.Any(u => u.Email == "ajensen@coderfoundry"))
+            if (!context.Users.Any(u => u.Email == "ajensen@coderfoundry.com"))
             {
                 userManager.Create(new ApplicationUser
                 {
-                    UserName = "ajensen@coderfoundry",
-                    Email = "ajensen@coderfoundry",
+                    UserName = "ajensen@coderfoundry.com",
+                    Email = "ajensen@coderfoundry.com",
                     FirstName = "Andrew",
                     LastName = "Jensen",
                     DisplayName = "Andrew"
                 }, "password");
             }
-            userId = userManager.FindByEmail("ajensen@coderfoundry").Id;
+            userId = userManager.FindByEmail("ajensen@coderfoundry.com").Id;
             userManager.AddToRole(userId, "Project Manager");
 
-            if (!context.Users.Any(u => u.Email == "araynor@coderfoundry"))
+            if (!context.Users.Any(u => u.Email == "araynor@coderfoundry.com"))
             {
                 userManager.Create(new ApplicationUser
                 {
-                    UserName = "araynor@coderfoundry",
-                    Email = "araynor@coderfoundry",
+                    UserName = "araynor@coderfoundry.com",
+                    Email = "araynor@coderfoundry.com",
                     FirstName = "Antonio",
                     LastName = "Raynor",
                     DisplayName = "Antonio"
                 }, "password");
             }
-            userId = userManager.FindByEmail("araynor@coderfoundry").Id;
+            userId = userManager.FindByEmail("araynor@coderfoundry.com").Id;
             userManager.AddToRole(userId, "Project Manager");
+
+            if (!context.Users.Any(u => u.Email == "jsmith@anaddress.com"))
+            {
+                userManager.Create(new ApplicationUser
+                {
+                    UserName = "jsmith@anaddress.com",
+                    Email = "jsmith@anaddress.com",
+                    FirstName = "John",
+                    LastName = "Smith",
+                    DisplayName = "John"
+                }, "password");
+            }
+            userId = userManager.FindByEmail("jsmith@anaddress.com").Id;
+            userManager.AddToRole(userId, "Developer");
+
+            if (!context.Users.Any(u => u.Email == "aguy@address2.com"))
+            {
+                userManager.Create(new ApplicationUser
+                {
+                    UserName = "aguy@address2.com",
+                    Email = "aguy@address2.com",
+                    FirstName = "Another",
+                    LastName = "Guy",
+                    DisplayName = "Another"
+                }, "password");
+            }
+            userId = userManager.FindByEmail("aguy@address2.com").Id;
+            userManager.AddToRole(userId, "Submitter");
 
             //TicketStatus Seed
             if (!context.TicketStatus.Any(s => s.Name == "Open"))
@@ -221,7 +249,7 @@ namespace BugTracker.Migrations
 
         //  This method will be called after migrating to the latest version.
 
-        //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+        //  You can use the DbSet<T>.AddOrUpdate() UHelper extension method 
         //  to avoid creating duplicate seed data. E.g.
         //
         //    context.People.AddOrUpdate(

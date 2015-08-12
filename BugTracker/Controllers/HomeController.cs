@@ -4,11 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BugTracker.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BugTracker.Controllers
 {
     public class HomeController : Controller
     {
+        private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        private ApplicationDbContext db = new ApplicationDbContext();
+        private UserRolesHelper UHelper = new UserRolesHelper();
+
         public ActionResult Index()
         {
             return View();
@@ -27,22 +33,67 @@ namespace BugTracker.Controllers
 
             return View();
         }
-        public ActionResult PersonnelView()
+
+
+        //GET: Home/Personnel
+        [Authorize(Roles = "Admin")]
+        public ActionResult Personnel()
         {
-            var db = new ApplicationDbContext();
-            var personelView = new PersonnelView();
-            foreach (var item in db.Users) {
-                personelView.Id = item.Id;
-                personelView.FirstName = item.FirstName;
-                personelView.LastName = item.LastName;
-                personelView.DisplayName = item.DisplayName;
-                personelView.Role = item.Roles.; 
+            var currentUsers = db.Users;
 
 
+            //foreach (var person in currentUsers)
+            //{
 
+            //var roles = person.Roles.ToList();
+            //var rolesList = String.Join(" | ", roles);
+
+            //}
+
+
+            var userList = currentUsers.ToList();
+            ViewBag.Length = userList.Count();
+
+            return View(userList);
+        }
+
+
+        //GET: Home/EditRoles
+        [Authorize(Roles = "Admin")]
+        public ActionResult EditRoles(string id)
+        {
+            var person = db.Users.Find(id);
+            var roles = db.Roles;
+            var userRoles = roles.Where(r => r.Users.Any(u => u.UserId == id));
+            var userRolesList = (IEnumerable<IdentityRole>)userRoles;
+            var roleList = (IEnumerable<IdentityRole>)roles;
+            ViewBag.MyRoles = new SelectList(userRolesList, "Id", "Name");
+            ViewBag.Roles = new SelectList(roleList, "Id", "Name");
+            //var userRoles = person.Roles.Where(r => r.)
+            //var urList = db.Roles.Where(r => r.Id == userRoles.);
+            //ViewBag.MyRoles = urList;
+            return View(person);
+        }
+
+        //POST: Home/EditRoles
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditRoles(string user, string role, string operation)
+        {
+            if (!(operation == null || role == ""))
+            {
+                var r = db.Roles.Find(role).Name;
+                if (operation == "Add")
+                {
+                    UHelper.AddUserToRole(user, r);
+                }
+                else
+                {
+                    UHelper.RemoveUserFromRole(user, r);
+                }
             }
-
-            return View();
+            db.SaveChanges();
+            return RedirectToAction("EditRoles", "Home", user);
         }
     }
 }

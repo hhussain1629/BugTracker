@@ -1,0 +1,6 @@
+document.getElementById('fileinput').addEventListener('change', readFile(), false);
+
+
+
+
+[/[ ,'"".;:!?+=%&*(){}\n\r\t]/]

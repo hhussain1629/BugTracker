@@ -128,7 +128,8 @@
         
         foreach (var item in Model.Attachments)
         {
-            <a href="@item.FileUrl" download="@item.Description" @*target="_blank"*@> @item.Description</a>
+            <p>@item.Description </p>
+            <iframe src = "@Url.Content(item.FileUrl)"> @item.Description</iframe>
         }
     <br /> <br />
         <br /> <br />

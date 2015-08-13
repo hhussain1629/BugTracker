@@ -1,0 +1,2 @@
+	First, open a file to be read as text. (See sample code.)
+	

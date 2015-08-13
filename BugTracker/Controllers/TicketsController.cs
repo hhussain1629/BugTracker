@@ -20,6 +20,20 @@ namespace BugTracker.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         private UserProjectsHelper PHelper = new UserProjectsHelper();
 
+        private void CreateHist(Ticket oldTicket, string property, string oldValue, string newValue)
+        {
+            var tHist = new TicketHistory();
+            tHist.TicketId = oldTicket.Id;
+            tHist.Property = property;
+            tHist.OldValue = oldValue;
+            tHist.NewValue = newValue;
+            tHist.Changed = DateTimeOffset.UtcNow;
+            tHist.UserId = User.Identity.GetUserId();
+            db.TicketHistories.Add(tHist);
+            db.SaveChanges();
+            return;
+        }
+
         // GET: Tickets
         [Authorize]
         public ActionResult Index(string lType)
@@ -115,12 +129,12 @@ namespace BugTracker.Controllers
                     var attachment = new TicketAttachment();
                     attachment.TicketId = Id;
                     attachment.Description = AttachDesc;
-                    attachment.FilePath = "C:\\Users\\Hammad\\Documents\\Visual Studio 2013\\Projects\\BugTracker\\BugTracker\\Views\\"
-                        + AttachDesc;
+                    var fileName = Path.GetFileName(fileUpload.FileName);
                     attachment.Created = DateTimeOffset.UtcNow;
                     attachment.UserId = User.Identity.GetUserId();
-                    attachment.FileUrl = "C:/Users/Hammad/Documents/Vistual Studio 2013/Projects/BugTracker/BugTracker/Views/UserAttachments/" + AttachDesc;
-                    fileUpload.SaveAs(Path.Combine(Server.MapPath("~/Views/UserAttachments"), AttachDesc));
+                    attachment.FilePath = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+                    fileUpload.SaveAs(attachment.FilePath);
+                    attachment.FileUrl = "~/Uploads/" + fileName;
                     db.TicketAttachments.Add(attachment);
                     db.SaveChanges();
                 }
@@ -202,9 +216,11 @@ namespace BugTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId,AssignedToUserId")] Ticket ticket)
         {
+            
             if (ModelState.IsValid)
             {
 
+                //Create ticket lists appropriate to user role
                 var openStatusId = db.TicketStatus.SingleOrDefault(ts => ts.Name == "Open").Id;
                 var assignedStatusId = db.TicketStatus.SingleOrDefault(ts => ts.Name == "Assigned").Id;
                 if (!(ticket.AssignedToUserId == null) && ticket.TicketStatusId == openStatusId)
@@ -216,8 +232,43 @@ namespace BugTracker.Controllers
                     ticket.TicketStatusId = openStatusId;
                 }
                 ticket.Updated = DateTimeOffset.Now.UtcDateTime;
-                db.Entry(ticket).State = EntityState.Modified;
+
+                //Create ticket history entry
+                var oldTicket = db.Tickets.Find(ticket.Id);
+                //db.Entry(ticket).State = EntityState.Modified;
+                db.Tickets.Remove(oldTicket);
+                db.Tickets.Add(ticket);
                 db.SaveChanges();
+                var newTicket = db.Tickets.Find(ticket.Id);
+                if (oldTicket.Title != newTicket.Title)
+                {
+                    CreateHist(oldTicket, "Title", oldTicket.Title, newTicket.Title);
+                }
+                if (oldTicket.Description != newTicket.Description)
+                {
+                    CreateHist(oldTicket, "Description", oldTicket.Description, newTicket.Description);
+                }
+                if (oldTicket.ProjectId != newTicket.ProjectId)
+                {
+                    CreateHist(oldTicket, "Project", oldTicket.Project.Name, newTicket.Project.Name);
+                }
+                if (oldTicket.TicketTypeId != newTicket.TicketTypeId)
+                {
+                    CreateHist(oldTicket, "Ticket Type", oldTicket.TicketType.Name, newTicket.TicketType.Name);
+                }
+                if (oldTicket.TicketPriorityId != newTicket.TicketPriorityId)
+                {
+                    CreateHist(oldTicket, "Ticket Priority", oldTicket.TicketPriority.Name, newTicket.TicketPriority.Name);
+                }
+                if (oldTicket.TicketStatusId != newTicket.TicketStatusId)
+                {
+                    CreateHist(oldTicket, "Ticket Status", oldTicket.TicketStatus.Name, newTicket.TicketStatus.Name);
+                }
+                if (oldTicket.AssignedToUserId != newTicket.AssignedToUserId)
+                {
+                    CreateHist(oldTicket, "Assigned To", oldTicket.AssignedToUser.DisplayName, newTicket.AssignedToUser.DisplayName);
+                }
+               
                 return RedirectToAction("Index");
             }
             return View(ticket);

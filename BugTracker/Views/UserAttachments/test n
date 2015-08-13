@@ -1,0 +1,14 @@
+for (k = 0; k <= len; k++)
+			d.push(0);
+for (i = 0; i <= len; i++)
+			d[i] = parseInt(numstring.charAt(i));
+if ((num <= 0) || !(num == Math.floor(num)))
+		return false;
+
+
+
+
+var len = numstring.len;
+
+		numstring = String(smsq);
+		len = numstring.length;

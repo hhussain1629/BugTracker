@@ -52,7 +52,7 @@ namespace BugTracker.Controllers
 
         // GET: Tickets/Details/5
         [Authorize]
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -95,6 +95,8 @@ namespace BugTracker.Controllers
             ViewBag.UserId = userId;
             var comments = db.TicketComments.Where(c => c.TicketId == id);
             ticket.Comments = comments.ToList();
+            var attachments = db.TicketAttachments.Where(ta => ta.TicketId == id);
+            ticket.Attachments = attachments.ToList();
             return View(ticket);
         }
 
@@ -102,25 +104,29 @@ namespace BugTracker.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Details([Bind(Include = "TicketId, Description")] TicketAttachment attachment, HttpPostedFileBase fileUpload)
+        public ActionResult Details(int Id, string allowed, string AttachDesc, HttpPostedFileBase fileUpload)
         {
+            var ticket = db.Tickets.Find(Id);
+            ViewBag.CreateAllowed = true;
             if (ModelState.IsValid)
             {
-                if (fileUpload != null && fileUpload.ContentLength > 0)
+                if (fileUpload != null && fileUpload.ContentLength > 0 && allowed == "true")
                 {
-                    var fileName = attachment.Id.ToString();
+                    var attachment = new TicketAttachment();
+                    attachment.TicketId = Id;
+                    attachment.Description = AttachDesc;
                     attachment.FilePath = "C:\\Users\\Hammad\\Documents\\Visual Studio 2013\\Projects\\BugTracker\\BugTracker\\Views\\"
-                        + fileName;
+                        + AttachDesc;
                     attachment.Created = DateTimeOffset.UtcNow;
                     attachment.UserId = User.Identity.GetUserId();
-                    attachment.FileUrl = "~/Views/UserAttachments/" + fileName;
-                    fileUpload.SaveAs(Path.Combine(Server.MapPath("~/Views/UserAttachments"), fileName));
+                    attachment.FileUrl = "C:/Users/Hammad/Documents/Vistual Studio 2013/Projects/BugTracker/BugTracker/Views/UserAttachments/" + AttachDesc;
+                    fileUpload.SaveAs(Path.Combine(Server.MapPath("~/Views/UserAttachments"), AttachDesc));
                     db.TicketAttachments.Add(attachment);
                     db.SaveChanges();
                 }
                 
             }
-            return View();
+            return View(ticket);
         }
 
 

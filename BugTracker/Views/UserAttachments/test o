@@ -1,0 +1,13 @@
+					for (i2 in wordcount) {
+						if ((i2 + 1) == wordcount.length)
+							break;
+						for (i3 = i2 + 1; i3 + 1 <= wordcount.length; i3++)
+							if (wordcount[i2] > wordcount[i3]) {
+								var wctemp = wordcount[i2];
+								wordcount[i2] = wordcount[i3];
+								wordcount[i3] = wctemp;
+								var fwtemp = filewords[i2];
+								filewords[i2] = filewords[i3];
+								filewords[i3] = fwtemp;
+							}
+					}

@@ -20,16 +20,24 @@ namespace BugTracker.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         private UserProjectsHelper PHelper = new UserProjectsHelper();
 
-        private void CreateHist(Ticket oldTicket, string property, string oldValue, string newValue)
+        private void CreateHist(int newTicketId, string property, string oldValue, string newValue)
         {
             var tHist = new TicketHistory();
-            tHist.TicketId = oldTicket.Id;
+            tHist.TicketId = newTicketId;
             tHist.Property = property;
             tHist.OldValue = oldValue;
             tHist.NewValue = newValue;
             tHist.Changed = DateTimeOffset.UtcNow;
             tHist.UserId = User.Identity.GetUserId();
-            db.TicketHistories.Add(tHist);
+            //db.TicketHistories.Add(tHist);
+            //var ticket = db.Tickets.Find(newTicketId);
+            //if (ticket != null)
+            //{
+                //ticket.Histories.Add(tHist);
+                //db.Entry(ticket).State = EntityState.Modified;
+                //db.SaveChanges();
+            //}
+            db.Entry(tHist).State = EntityState.Added;
             db.SaveChanges();
             return;
         }
@@ -40,7 +48,8 @@ namespace BugTracker.Controllers
         {
             if (lType == null)
             {
-                return View(db.Tickets.ToList());
+                var tList = db.Tickets.ToList();
+                return View(tList);
             }
             else
             {
@@ -206,6 +215,10 @@ namespace BugTracker.Controllers
             var DDDList = new SelectList(D, "Id", "DisplayName");
             ViewBag.DDDList = DDDList;
 
+            TempData["ticket"] = db.Tickets.Include("Project").Include("AssignedToUser")
+                    .Include("TicketType").Include("TicketPriority").Include("TicketStatus")
+                    .ToList().FirstOrDefault(t => t.Id == ticket.Id);
+
             return View(ticket);
         }
 
@@ -231,44 +244,63 @@ namespace BugTracker.Controllers
                 {
                     ticket.TicketStatusId = openStatusId;
                 }
+
                 ticket.Updated = DateTimeOffset.Now.UtcDateTime;
 
-                //Create ticket history entry
-                var oldTicket = db.Tickets.Find(ticket.Id);
-                //db.Entry(ticket).State = EntityState.Modified;
-                db.Tickets.Remove(oldTicket);
-                db.Tickets.Add(ticket);
-                db.SaveChanges();
-                var newTicket = db.Tickets.Find(ticket.Id);
-                if (oldTicket.Title != newTicket.Title)
-                {
-                    CreateHist(oldTicket, "Title", oldTicket.Title, newTicket.Title);
-                }
-                if (oldTicket.Description != newTicket.Description)
-                {
-                    CreateHist(oldTicket, "Description", oldTicket.Description, newTicket.Description);
-                }
-                if (oldTicket.ProjectId != newTicket.ProjectId)
-                {
-                    CreateHist(oldTicket, "Project", oldTicket.Project.Name, newTicket.Project.Name);
-                }
-                if (oldTicket.TicketTypeId != newTicket.TicketTypeId)
-                {
-                    CreateHist(oldTicket, "Ticket Type", oldTicket.TicketType.Name, newTicket.TicketType.Name);
-                }
-                if (oldTicket.TicketPriorityId != newTicket.TicketPriorityId)
-                {
-                    CreateHist(oldTicket, "Ticket Priority", oldTicket.TicketPriority.Name, newTicket.TicketPriority.Name);
-                }
-                if (oldTicket.TicketStatusId != newTicket.TicketStatusId)
-                {
-                    CreateHist(oldTicket, "Ticket Status", oldTicket.TicketStatus.Name, newTicket.TicketStatus.Name);
-                }
-                if (oldTicket.AssignedToUserId != newTicket.AssignedToUserId)
-                {
-                    CreateHist(oldTicket, "Assigned To", oldTicket.AssignedToUser.DisplayName, newTicket.AssignedToUser.DisplayName);
-                }
+                
                
+                //Create ticket history entry
+
+                Ticket oldTicket = (Ticket)TempData["ticket"];
+                
+                var oldName = "";
+                var newName = "";
+
+                if (oldTicket.Title != ticket.Title)
+                {
+                    CreateHist(oldTicket.Id, "Title", oldTicket.Title, ticket.Title);
+                }
+                if (oldTicket.Description != ticket.Description)
+                {
+                    CreateHist(oldTicket.Id, "Description", oldTicket.Description, ticket.Description);
+                }
+                if (oldTicket.ProjectId != ticket.ProjectId)
+                {
+                    oldName = db.Projects.Find(oldTicket.ProjectId).Name;
+                    newName = db.Projects.Find(ticket.ProjectId).Name;
+                    CreateHist(oldTicket.Id, "Project", oldName, newName);
+                }
+                if (oldTicket.TicketTypeId != ticket.TicketTypeId)
+                {
+                    oldName = db.TicketTypes.Find(oldTicket.TicketTypeId).Name;
+                    newName = db.TicketTypes.Find(ticket.TicketTypeId).Name;
+                    CreateHist(oldTicket.Id, "Ticket Type", oldName, newName);
+                }
+                if (oldTicket.TicketPriorityId != ticket.TicketPriorityId)
+                {
+                    oldName = db.TicketPriorities.Find(oldTicket.TicketPriorityId).Name;
+                    newName = db.TicketPriorities.Find(ticket.TicketPriorityId).Name;
+                    CreateHist(oldTicket.Id, "Ticket Priority", oldName, newName);
+                }
+                if (oldTicket.TicketStatusId != ticket.TicketStatusId)
+                {
+                    oldName = db.TicketStatus.Find(oldTicket.TicketStatusId).Name;
+                    newName = db.TicketStatus.Find(ticket.TicketStatusId).Name;
+                    CreateHist(oldTicket.Id, "Ticket Status", oldName, newName);
+                }
+                if (oldTicket.AssignedToUserId != ticket.AssignedToUserId)
+                {
+                    if (oldTicket.AssignedToUserId != null)
+                    {
+                        oldName = db.Users.Find(oldTicket.AssignedToUserId).DisplayName;
+                    }
+                    newName = db.Users.Find(ticket.AssignedToUserId).DisplayName;
+                    CreateHist(oldTicket.Id, "Assigned To", oldName, newName);
+                }
+
+                db.Entry(ticket).State = EntityState.Modified;
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             return View(ticket);

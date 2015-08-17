@@ -1,0 +1,80 @@
+﻿@model IEnumerable<BugTracker.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Personnel";
+}
+
+
+<h2>Personnel</h2>
+
+
+<table class="table">
+    @*<tr>
+            <th>
+                @Html.DisplayNameFor(Model => Model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Roles)
+            </th>
+
+            <th></th>
+        </tr> Ask Antonio about this display issue.*@
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Roles)*@
+
+                @*@{
+
+        //ApplicationRoleManager rm = new ApplicationRoleManager();
+        var rolesList = "";
+        foreach (var r in @item.Roles)
+        {
+            rolesList = String.Join(" | ", r.RoleId);
+        }
+
+
+        Html.Display(rolesList);
+
+                }*@
+
+
+
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Updated)
+                </td>*@
+            <td>
+                @Html.ActionLink("Edit Roles", "EditRoles", new { id = item.Id })
+
+            </td>
+        </tr>
+
+    }
+
+</table>
+
+@*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+    @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+
+
+

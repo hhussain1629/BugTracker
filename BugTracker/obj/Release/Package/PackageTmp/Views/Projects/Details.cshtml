@@ -1,0 +1,80 @@
+﻿@model BugTracker.Models.Project
+@using System.Web.Mvc;
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+
+<div>
+    <h4>Project</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+
+    @*<dt>
+            @Html.DisplayNameFor(model => model.Begun)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Begun)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discontinued)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discontinued)
+        </dd>*@
+
+    @*<div class="form-group">
+            <h3> Add User to Project</h3>
+            <div>
+                @Html.DropDownListFor(model => model.Personnel, (SelectList)ViewBag.UserList)
+            </div>
+        </div>*@
+
+    @*<div class="form-group">
+            <h3> Delete User from Project</h3>
+            <div>
+                @Html.DropDownListFor(model => model.Users, (SelectList)ViewBag.UserList)
+            </div>
+        </div>*@
+
+
+
+
+</div>
+
+
+
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+        <span> | </span>
+    } 
+    @Html.ActionLink("Back to List", "Index") 
+
+</p>
+@*@if (User.Identity.IsAuthenticated)
+    {
+        | @Html.ActionLink("Add Ticket", "Create", "Tickets", new { id = Model.Id }, null)
+    }
+*@
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

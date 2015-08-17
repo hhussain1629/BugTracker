@@ -1,0 +1,23 @@
+public class TicketViewModel
+    {
+        public TicketViewModel()
+        {
+            this.Comments = new HashSet<TicketComment>();
+            this.Attachments = new HashSet<TicketAttachment>();
+            this.Histories = new HashSet<TicketHistory>();
+        }
+        public int? Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public DateTimeOffset Created { get; set; }
+        public Nullable<DateTimeOffset> Updated { get; set; }
+        public virtual string ProjectName { get; set; }
+        public virtual string TicketTypeName { get; set; }
+        public virtual string TicketPriorityName { get; set; }
+        public virtual string TicketStatusName { get; set; }
+        public virtual string OwnerUserName { get; set; }
+        public virtual string AssignedToUserName { get; set; }
+        public virtual ICollection<TicketComment> Comments { get; set; }
+        public virtual ICollection<TicketAttachment> Attachments { get; set; }
+        public virtual ICollection<TicketHistory> Histories { get; set; }
+    }

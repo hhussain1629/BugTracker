@@ -70,6 +70,19 @@ namespace BugTracker.Controllers
         [Authorize]
         public ActionResult Index(string lType)
         {
+
+            var TT = db.TicketTypes.AsEnumerable();
+            var TTDDList = new SelectList(TT, "Id", "Name");
+            ViewBag.TTDDList = TTDDList;
+
+            var TP = db.TicketPriorities.AsEnumerable();
+            var TPDDList = new SelectList(TP, "Id", "Name");
+            ViewBag.TPDDList = TPDDList;
+
+            var TS = db.TicketStatus.AsEnumerable();
+            var TSDDList = new SelectList(TS, "Id", "Name");
+            ViewBag.TSDDList = TSDDList;
+
             if (lType == null)
             {
                 var tList = db.Tickets.ToList();
@@ -78,20 +91,42 @@ namespace BugTracker.Controllers
             else
             {
                 Dispose(true);
-                var db = new ApplicationDbContext();
+                var db2 = new ApplicationDbContext();
                 var userId = User.Identity.GetUserId();
                 if (lType == "assigned")
                 {
-                    var tList = db.Tickets.Where(t => t.AssignedToUserId == userId).ToList();
+                    var tList = db2.Tickets.Where(t => t.AssignedToUserId == userId).ToList();
                     return View(tList);
                 }
                 else
                 {
-                    var tList = db.Tickets.Where(t => t.OwnerUserId == userId).ToList();
+                    var tList = db2.Tickets.Where(t => t.OwnerUserId == userId).ToList();
                     return View(tList);
                 }
             }
         }
+
+
+        ////POST: Tickets
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Index(int? TicketTypeId, int? TicketPriorityId, int? TicketStatusId)
+        //{
+        //    var tList = (IQueryable<Ticket>)db.Tickets;
+        //    if (TicketTypeId != null)
+        //    {
+        //        tList = tList.Where(t => t.TicketTypeId == TicketTypeId);
+        //    }
+        //    if (TicketPriorityId != null)
+        //    {
+        //        tList = tList.Where(t => t.TicketPriorityId == TicketPriorityId);
+        //    }
+        //    if (TicketStatusId != null)
+        //    {
+        //        tList = tList.Where(t => t.TicketStatusId == TicketStatusId);
+        //    }
+        //    return View(tList);
+        //}
 
 
 
@@ -150,7 +185,6 @@ namespace BugTracker.Controllers
         //POST: Tickets/Details/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public ActionResult Details(int Id, string allowed, string AttachDesc, HttpPostedFileBase fileUpload)
         {
             var ticket = db.Tickets.Find(Id);
@@ -346,10 +380,10 @@ namespace BugTracker.Controllers
                 //Notify assigned user of modification by others
                 if (modified)
                 {
-                    var userId = User.Identity.GetUserId();
-                    if (ticket.AssignedToUserId != null && ticket.AssignedToUserId != userId)
+                    
+                    if (ticket.AssignedToUserId != null )
                     {
-                        if (subject != "")
+                        if (subject == "")
                         {
                             subject = "A Ticket Assigned to You Has Been Modified";
                         }

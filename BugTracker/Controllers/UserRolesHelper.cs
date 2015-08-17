@@ -55,23 +55,20 @@ namespace BugTracker.Models
                 }
             return resultList;
         }
-        public string DisplayRolesText (ICollection<IdentityUserRole>userRoles)
-        {
-            var rolesText = "";
-            foreach (var role in userRoles)
-            {
-                if (rolesText != "")
-                {
-                    rolesText = rolesText + ", ";
-                }
-                rolesText = rolesText + db.Roles.SingleOrDefault(r => r.Id == role.RoleId).Name;
-            }
-            return rolesText;
-        }
-            //public ICollection<IdentityUserRole> RolesNotOfUser(string id)
+        //public string DisplayRolesText (ICollection<IdentityUserRole>userRoles)
         //{
-           
+        //    var rolesText = "";
+        //    foreach (var role in userRoles)
+        //    {
+        //        if (rolesText != "")
+        //        {
+        //            rolesText = rolesText + ", ";
+        //        }
+        //        rolesText = rolesText + db.Roles.SingleOrDefault(r => r.Id == role.RoleId).Name;
+        //    }
+        //    return rolesText;
         //}
+            
        
     }
 }

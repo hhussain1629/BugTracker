@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.Helpers;
 using System.IO;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using BugTracker.Models;
 using BugTracker.Controllers;
 
@@ -19,6 +20,8 @@ namespace BugTracker.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private UserProjectsHelper PHelper = new UserProjectsHelper();
+        private UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
 
         private void CreateHist(int newTicketId, string property, string oldValue, string newValue)
         {
@@ -29,18 +32,39 @@ namespace BugTracker.Controllers
             tHist.NewValue = newValue;
             tHist.Changed = DateTimeOffset.UtcNow;
             tHist.UserId = User.Identity.GetUserId();
-            //db.TicketHistories.Add(tHist);
-            //var ticket = db.Tickets.Find(newTicketId);
-            //if (ticket != null)
-            //{
-                //ticket.Histories.Add(tHist);
-                //db.Entry(ticket).State = EntityState.Modified;
-                //db.SaveChanges();
-            //}
             db.Entry(tHist).State = EntityState.Added;
             db.SaveChanges();
             return;
         }
+
+        private void SendNotification(string ATUId, int ticketId, string msgSubject)
+        {
+            var notification = new TicketNotification();
+            var ticketTitle = db.Tickets.Find(ticketId).Title;
+            var uEmail = db.Users.FirstOrDefault(u => u.Id == ATUId).Email;
+            var udName = db.Users.FirstOrDefault(u => u.Id == ATUId).DisplayName;
+            var body = "Dear " + udName + ", ";
+            if (msgSubject == "A Ticket Has Been Assigned to You")
+            {
+                body += "A ticket entitled " + ticketTitle
+                    + " has been assigned to you. ";
+                notification.Purpose = "Assignment";
+            }
+            else
+            {
+                body += "A ticket to which you are assigned, entitled " + ticketTitle + ", has been modified by another user. ";
+                notification.Purpose = "Ticket modified";
+            }
+            body += "Please log in to the application, click on 'Tickets', and then on the title of this ticket to see the details. "
+                    + "This is an auto-generated e-mail. Please do not reply to it.";
+            manager.SendEmail(ATUId, msgSubject, body);
+            notification.TicketId = ticketId;
+            notification.UserId = ATUId;
+            notification.DateTime = DateTimeOffset.UtcNow;
+            db.Entry(notification).State = EntityState.Added;
+            db.SaveChanges();
+        }
+
 
         // GET: Tickets
         [Authorize]
@@ -136,18 +160,24 @@ namespace BugTracker.Controllers
                 if (fileUpload != null && fileUpload.ContentLength > 0 && allowed == "true")
                 {
                     var attachment = new TicketAttachment();
+                    var userId = User.Identity.GetUserId();
                     attachment.TicketId = Id;
                     attachment.Description = AttachDesc;
                     var fileName = Path.GetFileName(fileUpload.FileName);
                     attachment.Created = DateTimeOffset.UtcNow;
-                    attachment.UserId = User.Identity.GetUserId();
+                    attachment.UserId = userId;
                     attachment.FilePath = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
                     fileUpload.SaveAs(attachment.FilePath);
                     attachment.FileUrl = "~/Uploads/" + fileName;
                     db.TicketAttachments.Add(attachment);
                     db.SaveChanges();
+                    if (ticket.AssignedToUserId != null && ticket.AssignedToUserId != userId)
+                    {
+                        var subject = "A Ticket Assigned to You Has Been Modified";
+                        SendNotification(ticket.AssignedToUserId, ticket.Id, subject);
+                    }
                 }
-                
+
             }
             return View(ticket);
         }
@@ -229,11 +259,12 @@ namespace BugTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId,AssignedToUserId")] Ticket ticket)
         {
-            
+
             if (ModelState.IsValid)
             {
 
-                //Create ticket lists appropriate to user role
+
+                //Make sure user role and ticket assignment status are consistent 
                 var openStatusId = db.TicketStatus.SingleOrDefault(ts => ts.Name == "Open").Id;
                 var assignedStatusId = db.TicketStatus.SingleOrDefault(ts => ts.Name == "Assigned").Id;
                 if (!(ticket.AssignedToUserId == null) && ticket.TicketStatusId == openStatusId)
@@ -247,46 +278,52 @@ namespace BugTracker.Controllers
 
                 ticket.Updated = DateTimeOffset.Now.UtcDateTime;
 
-                
-               
+
                 //Create ticket history entry
 
                 Ticket oldTicket = (Ticket)TempData["ticket"];
-                
+
                 var oldName = "";
                 var newName = "";
+                var subject = "";
+                bool modified = false;
 
                 if (oldTicket.Title != ticket.Title)
                 {
                     CreateHist(oldTicket.Id, "Title", oldTicket.Title, ticket.Title);
+                    modified = true;
                 }
                 if (oldTicket.Description != ticket.Description)
                 {
                     CreateHist(oldTicket.Id, "Description", oldTicket.Description, ticket.Description);
+                    modified = true;
                 }
-                if (oldTicket.ProjectId != ticket.ProjectId)
-                {
-                    oldName = db.Projects.Find(oldTicket.ProjectId).Name;
-                    newName = db.Projects.Find(ticket.ProjectId).Name;
-                    CreateHist(oldTicket.Id, "Project", oldName, newName);
-                }
+                //if (oldTicket.ProjectId != ticket.ProjectId)
+                //{
+                //    oldName = db.Projects.Find(oldTicket.ProjectId).Name;
+                //    newName = db.Projects.Find(ticket.ProjectId).Name;
+                //    CreateHist(oldTicket.Id, "Project", oldName, newName);
+                //}
                 if (oldTicket.TicketTypeId != ticket.TicketTypeId)
                 {
                     oldName = db.TicketTypes.Find(oldTicket.TicketTypeId).Name;
                     newName = db.TicketTypes.Find(ticket.TicketTypeId).Name;
                     CreateHist(oldTicket.Id, "Ticket Type", oldName, newName);
+                    modified = true;
                 }
                 if (oldTicket.TicketPriorityId != ticket.TicketPriorityId)
                 {
                     oldName = db.TicketPriorities.Find(oldTicket.TicketPriorityId).Name;
                     newName = db.TicketPriorities.Find(ticket.TicketPriorityId).Name;
                     CreateHist(oldTicket.Id, "Ticket Priority", oldName, newName);
+                    modified = true;
                 }
                 if (oldTicket.TicketStatusId != ticket.TicketStatusId)
                 {
                     oldName = db.TicketStatus.Find(oldTicket.TicketStatusId).Name;
                     newName = db.TicketStatus.Find(ticket.TicketStatusId).Name;
                     CreateHist(oldTicket.Id, "Ticket Status", oldName, newName);
+                    modified = true;
                 }
                 if (oldTicket.AssignedToUserId != ticket.AssignedToUserId)
                 {
@@ -294,12 +331,31 @@ namespace BugTracker.Controllers
                     {
                         oldName = db.Users.Find(oldTicket.AssignedToUserId).DisplayName;
                     }
-                    newName = db.Users.Find(ticket.AssignedToUserId).DisplayName;
+                    if (ticket.AssignedToUserId != null)
+                    {
+                        newName = db.Users.Find(ticket.AssignedToUserId).DisplayName;
+                    }
                     CreateHist(oldTicket.Id, "Assigned To", oldName, newName);
+                    subject = "A Ticket Has Been Assigned to You";
+                    modified = true;
                 }
 
                 db.Entry(ticket).State = EntityState.Modified;
                 db.SaveChanges();
+
+                //Notify assigned user of modification by others
+                if (modified)
+                {
+                    var userId = User.Identity.GetUserId();
+                    if (ticket.AssignedToUserId != null && ticket.AssignedToUserId != userId)
+                    {
+                        if (subject != "")
+                        {
+                            subject = "A Ticket Assigned to You Has Been Modified";
+                        }
+                        SendNotification(ticket.AssignedToUserId, ticket.Id, subject);
+                    }
+                }
 
                 return RedirectToAction("Index");
             }

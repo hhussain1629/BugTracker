@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
 
 </head>
 <body>
+    @using Microsoft.AspNet.Identity;
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -23,24 +25,29 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Bug Stalker", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("Bug Stalker", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
                     @*<li>@Html.ActionLink("About", "About", "Home")</li>*@
                     @if ((User.IsInRole("Admin")) || (User.IsInRole("Project Manager")) || User.IsInRole("Developer"))
                     {
-                        <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
+                        <li>@Html.ActionLink("Projects", "Index", "Projects", new { area = "" }, new { @class = "navbar-brand" })</li>
                     }
                     
                     @if (ViewContext.HttpContext.User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("Personnel", "Personnel", "Home")</li>
+                        <li>@Html.ActionLink("Roles", "Personnel", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
                     }
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Tickets", "Index", "Tickets")</li>
+                        <li>@Html.ActionLink("Tickets", "Index", "Tickets", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    }
+                    @if (ViewContext.HttpContext.User.IsInRole("Developer"))
+                    {
+                        var userId = User.Identity.GetUserId(); 
+                        <li>@Html.ActionLink("Ticket Notifications", "Index", "TicketNotifications", new { id = userId }, new { @class = "navbar-brand" })</li>
                     }
 
 

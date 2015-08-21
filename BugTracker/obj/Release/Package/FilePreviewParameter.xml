@@ -4,10 +4,10 @@
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Hammad\\documents\\visual\ studio\ 2013\\Projects\\BugTracker\\BugTracker\\obj\\Release\\Package\\PackageTmp$" />
     <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Hammad\\documents\\visual\ studio\ 2013\\Projects\\BugTracker\\BugTracker\\obj\\Release\\Package\\PackageTmp$" />
   </parameter>
-  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=tcp:mbmuw7kmu9.database.windows.net,1433;Initial Catalog=BugStalkerDatabase;User Id=CoderFoundry@mbmuw7kmu9;Password=LearnToCode1" tags="">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Hammad\\documents\\visual\ studio\ 2013\\Projects\\BugTracker\\BugTracker\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
-  </parameter>
-  <parameter name="HussainsDB-Web.config Connection String" description="HussainsDB Connection String used in web.config by the application to access the database." value="Data Source=mbmuw7kmu9.database.windows.net;          Database= BugStalkerDatabase;          User ID=CoderFoundry;          Password=LearnToCode1;          Encrypt=true;          Trusted_connection=false;" tags="SqlConnectionString">
+  <parameter name="HussainsDB-Web.config Connection String" description="" value="Data Source=tcp:mbmuw7kmu9.database.windows.net,1433;Initial Catalog=BugStalkerDatabase;User Id=CoderFoundry@mbmuw7kmu9;Password=LearnToCode1" tags="">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\Hammad\\documents\\visual\ studio\ 2013\\Projects\\BugTracker\\BugTracker\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='HussainsDB']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." value="Data Source=HAMMAD2\SQLEXPRESS;          &#xD;&#xA;         Initial Catalog=bugtracker_db;          &#xD;&#xA;         Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Hammad\\documents\\visual\ studio\ 2013\\Projects\\BugTracker\\BugTracker\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
   </parameter>
 </parameters>

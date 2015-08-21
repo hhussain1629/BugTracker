@@ -49,9 +49,6 @@
                         var userId = User.Identity.GetUserId(); 
                         <li>@Html.ActionLink("Ticket Notifications", "Index", "TicketNotifications", new { id = userId }, new { @class = "navbar-brand" })</li>
                     }
-
-
-
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<BugTracker.Models.ApplicationUser>
 
 @{
-    ViewBag.Title = "Personnel";
+    ViewBag.Title = "Roles";
 }
 
 
-<h2>Personnel</h2>
+<h2>Roles</h2>
+<hr />
 
 
 <table class="table">
@@ -29,12 +30,17 @@
     @foreach (var item in Model)
     {
         <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>*@
+
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.DisplayName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
@@ -44,17 +50,17 @@
 
                 @*@{
 
-        //ApplicationRoleManager rm = new ApplicationRoleManager();
-        var rolesList = "";
-        foreach (var r in @item.Roles)
-        {
-            rolesList = String.Join(" | ", r.RoleId);
-        }
+                    //ApplicationRoleManager rm = new ApplicationRoleManager();
+                    var rolesList = "";
+                    foreach (var r in @item.Roles)
+                    {
+                        rolesList = String.Join(" | ", r.RoleId);
+                    }
 
 
-        Html.Display(rolesList);
+                    Html.Display(rolesList);
 
-                }*@
+                            }*@
 
 
 

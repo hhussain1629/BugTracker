@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=HAMMAD2\SQLEXPRESS;          &#xD;&#xA;         Initial Catalog=bugtracker_db;          &#xD;&#xA;         Integrated Security=True" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Hammad\\Documents\\Visual\ Studio\ 2013\\Projects\\BugTracker\\BugTracker\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Hammad\\documents\\visual\ studio\ 2013\\Projects\\BugTracker\\BugTracker\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
   </parameter>
   <parameter name="HussainsDB-Web.config Connection String" description="HussainsDB Connection String used in web.config by the application to access the database." defaultValue="Data Source=mbmuw7kmu9.database.windows.net;          Database= BugStalkerDatabase;          User ID=CoderFoundry;          Password=LearnToCode1;          Encrypt=true;          Trusted_connection=false;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Hammad\\Documents\\Visual\ Studio\ 2013\\Projects\\BugTracker\\BugTracker\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='HussainsDB']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Hammad\\documents\\visual\ studio\ 2013\\Projects\\BugTracker\\BugTracker\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='HussainsDB']/@connectionString" />
   </parameter>
   <parameter name="DefaultConnection_DatabasePublish-Web.config Connection String" description="DefaultConnection_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="DefaultConnection_DatabasePublish.ConnetionString" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Hammad\\Documents\\Visual\ Studio\ 2013\\Projects\\BugTracker\\BugTracker\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection_DatabasePublish']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Hammad\\documents\\visual\ studio\ 2013\\Projects\\BugTracker\\BugTracker\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection_DatabasePublish']/@connectionString" />
   </parameter>
 </parameters>

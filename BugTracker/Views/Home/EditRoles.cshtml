@@ -7,15 +7,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Edit Roles Page";
 }
-<h2>Edit A User's Roles</h2>
+<h2>Edit a User's Roles</h2>
 
-<br /><br /><br />
-
-@Html.Raw("First Name: ")
-@Html.DisplayFor(model => model.FirstName)   @*Continue modifying the others in this way!!!!!*@
 <br />
-@Html.Raw("Last Name: ")
-@Html.DisplayFor(model => model.LastName)
+
+@Html.Raw("Name: ")
+@Html.DisplayFor(model => model.DisplayName)
 <br>
 @Html.Raw("E-mail Address: ")
 @Html.DisplayFor(model => model.Email)

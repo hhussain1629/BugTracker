@@ -53,12 +53,10 @@ namespace BugTracker.Models
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
-        {
-        }
         //public ApplicationDbContext()
         //    : base("HussainsDB", throwIfV1Schema: false)
-        //{
-        //}
+        {
+        }
 
         public static ApplicationDbContext Create()
         {

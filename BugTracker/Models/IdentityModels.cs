@@ -54,7 +54,7 @@ namespace BugTracker.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         //public ApplicationDbContext()
-        //    : base("HussainsDB", throwIfV1Schema: false)
+           // : base("HussainsDB", throwIfV1Schema: false)
         {
         }
 
@@ -73,6 +73,6 @@ namespace BugTracker.Models
         public DbSet<TicketNotification> TicketNotifications { get; set; }
         public DbSet<Project> Projects { get; set; }
 
-        //public System.Data.Entity.DbSet<BugTracker.Models.ApplicationUser> Users { get; set; }
+       
     }
 }

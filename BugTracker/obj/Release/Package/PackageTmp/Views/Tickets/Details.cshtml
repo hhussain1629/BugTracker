@@ -30,7 +30,7 @@
             @Html.DisplayNameFor(model => model.Created):
         </dt>
 
-        <dd>
+        <dd class="UTCTime">
             @Html.DisplayFor(model => model.Created)
         </dd>
 
@@ -38,7 +38,7 @@
             @Html.DisplayNameFor(model => model.Updated):
         </dt>
 
-        <dd>
+        <dd class="UTCTime">
             @Html.DisplayFor(model => model.Updated)
         </dd>
 
@@ -284,7 +284,7 @@
                     @Html.DisplayFor(modelItem => item.Property)
                 </td>
 
-                <td>
+                <td class="UTCTime">
                     @Html.DisplayFor(modelItem => item.Changed)
                 </td>
 
@@ -324,7 +324,7 @@
         {
             <tr>
 
-                <td>
+                <td class="UTCTime">
                     @Html.DisplayFor(modelItem => item.DateTime)
                 </td>
 

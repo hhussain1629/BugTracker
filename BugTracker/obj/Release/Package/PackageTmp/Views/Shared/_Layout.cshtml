@@ -10,7 +10,6 @@
     <!-- jQuery -->
     @*<script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.js"></script>*@
     <!-- DataTables -->
-    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -35,7 +34,7 @@
                     {
                         <li>@Html.ActionLink("Projects", "Index", "Projects", new { area = "" }, new { @class = "navbar-brand" })</li>
                     }
-                    
+
                     @if (ViewContext.HttpContext.User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("Roles", "Personnel", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
@@ -46,7 +45,7 @@
                     }
                     @if (ViewContext.HttpContext.User.IsInRole("Developer"))
                     {
-                        var userId = User.Identity.GetUserId(); 
+                        var userId = User.Identity.GetUserId();
                         <li>@Html.ActionLink("Ticket Notifications", "Index", "TicketNotifications", new { id = userId }, new { @class = "navbar-brand" })</li>
                     }
                 </ul>
@@ -65,6 +64,30 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+    <script>
+        $(function () {
+            // Determine timezone offset in milliseconds
+            // from: http://www.w3schools.com/jsref/jsref_getTimezoneOffset.asp
+            var d = new Date()
+            var offsetms = d.getTimezoneOffset() * 60 * 1000;
+            $('.UTCTime').each(function () {
+                try {
+                    var text = $(this).html();
+                    if (text.trim() != 0) {
+                        var n = new Date(text);
+                        n = new Date(n.valueOf() - offsetms + 4*60*60*1000);
+
+                        $(this).html(n.toDateString() + " " + n.toLocaleTimeString());
+
+                        $(this).attr("Converted from UTC " + text);
+                    }
+                }
+                catch (ex) {
+                    console.warn("Error converting time", ex);
+                }
+            });
+        });
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

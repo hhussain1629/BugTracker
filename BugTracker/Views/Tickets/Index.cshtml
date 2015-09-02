@@ -67,10 +67,10 @@
                 @*<td>
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>*@
-                <td>
+                <td class="UTCTime">
                     @Html.DisplayFor(modelItem => item.Created)
                 </td>
-                <td>
+                <td class="UTCTime">
                     @Html.DisplayFor(modelItem => item.Updated)
                 </td>
                 <td>
@@ -118,15 +118,15 @@
 
 
 
-@*
-    <hr>
-    @using (Html.BeginForm())
+
+<hr>
+@*@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         <h4>Filter Tickets Display</h4>
-        
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 

@@ -53,3 +53,5 @@ C:\Users\Hammad\documents\visual studio 2013\Projects\BugTracker\BugTracker\bin\
 C:\Users\Hammad\documents\visual studio 2013\Projects\BugTracker\BugTracker\obj\Debug\BugTracker.csprojResolveAssemblyReference.cache
 C:\Users\Hammad\documents\visual studio 2013\Projects\BugTracker\BugTracker\obj\Debug\BugTracker.dll
 C:\Users\Hammad\documents\visual studio 2013\Projects\BugTracker\BugTracker\obj\Debug\BugTracker.pdb
+C:\Users\Hammad\documents\visual studio 2013\Projects\BugTracker\BugTracker\bin\SendGrid.SmtpApi.dll
+C:\Users\Hammad\documents\visual studio 2013\Projects\BugTracker\BugTracker\bin\SendGridMail.dll

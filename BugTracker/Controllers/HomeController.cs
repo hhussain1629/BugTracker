@@ -6,6 +6,11 @@ using System.Web.Mvc;
 using BugTracker.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Threading.Tasks;
+using System.Configuration;
+using System.Net;
+using SendGrid;
+using System.Net.Mail;
 
 namespace BugTracker.Controllers
 {
@@ -19,6 +24,29 @@ namespace BugTracker.Controllers
         {
             return View();
         }
+
+        //[Authorize(Roles = "Admin, Project Manager, Developer")]
+        //public ActionResult Email()
+        //{
+        //    ViewBag.Title = "Email Test";
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public async Task<ActionResult> Email(string emailTo, string emailFrom, string subject, string body)
+        //{
+        //    var appSettings = ConfigurationManager.AppSettings;
+        //    var credentials = new NetworkCredential(appSettings["SendGridUserName"], appSettings["SendGridUserPassword"]);
+        //    SendGridMessage mymessage = new SendGridMessage();
+        //    mymessage.AddTo(emailTo);
+        //    mymessage.From = new MailAddress(emailFrom, "Hammad Hussain");
+        //    mymessage.Subject = subject;
+        //    mymessage.Text = body;
+        //    var transportWeb = new Web(credentials);
+        //    await transportWeb.DeliverAsync(mymessage);
+        //    return RedirectToAction("EmailSent", "Home", null); //New create "Email" and "EmailSent" Home Views!
+        //}
+
 
         public ActionResult About()
         {

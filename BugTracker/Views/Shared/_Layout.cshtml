@@ -35,7 +35,7 @@
                         <li>@Html.ActionLink("Projects", "Index", "Projects", new { area = "" }, new { @class = "navbar-brand" })</li>
                     }
 
-                    @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+                    @if (User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("Roles", "Personnel", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
                     }
@@ -43,11 +43,15 @@
                     {
                         <li>@Html.ActionLink("Tickets", "Index", "Tickets", new { area = "" }, new { @class = "navbar-brand" })</li>
                     }
-                    @if (ViewContext.HttpContext.User.IsInRole("Developer"))
+                    @if (User.IsInRole("Developer"))
                     {
                         var userId = User.Identity.GetUserId();
                         <li>@Html.ActionLink("Ticket Notifications", "Index", "TicketNotifications", new { id = userId }, new { @class = "navbar-brand" })</li>
                     }
+                    @*@if (User.IsInRole("Admin") || User.IsInRole ("Project Manager") || User.IsInRole("Developer"))
+                    {
+                        <li>@Html.ActionLink("E-mail", "Email", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    }*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

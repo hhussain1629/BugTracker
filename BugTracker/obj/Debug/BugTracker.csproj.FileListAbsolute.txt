@@ -55,3 +55,117 @@ C:\Users\Hammad\documents\visual studio 2013\Projects\BugTracker\BugTracker\obj\
 C:\Users\Hammad\documents\visual studio 2013\Projects\BugTracker\BugTracker\obj\Debug\BugTracker.pdb
 C:\Users\Hammad\documents\visual studio 2013\Projects\BugTracker\BugTracker\bin\SendGrid.SmtpApi.dll
 C:\Users\Hammad\documents\visual studio 2013\Projects\BugTracker\BugTracker\bin\SendGridMail.dll
+C:\Tools\BugTracker-master\BugTracker\bin\BugTracker.dll.config
+C:\Tools\BugTracker-master\BugTracker\bin\BugTracker.dll
+C:\Tools\BugTracker-master\BugTracker\bin\BugTracker.pdb
+C:\Tools\BugTracker-master\BugTracker\bin\Antlr3.Runtime.dll
+C:\Tools\BugTracker-master\BugTracker\bin\EntityFramework.dll
+C:\Tools\BugTracker-master\BugTracker\bin\EntityFramework.SqlServer.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Security.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Security.Google.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Web.Infrastructure.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Newtonsoft.Json.dll
+C:\Tools\BugTracker-master\BugTracker\bin\Owin.dll
+C:\Tools\BugTracker-master\BugTracker\bin\SendGrid.SmtpApi.dll
+C:\Tools\BugTracker-master\BugTracker\bin\SendGridMail.dll
+C:\Tools\BugTracker-master\BugTracker\bin\System.Web.Helpers.dll
+C:\Tools\BugTracker-master\BugTracker\bin\System.Web.Mvc.dll
+C:\Tools\BugTracker-master\BugTracker\bin\System.Web.Optimization.dll
+C:\Tools\BugTracker-master\BugTracker\bin\System.Web.Razor.dll
+C:\Tools\BugTracker-master\BugTracker\bin\System.Web.WebPages.Deployment.dll
+C:\Tools\BugTracker-master\BugTracker\bin\System.Web.WebPages.dll
+C:\Tools\BugTracker-master\BugTracker\bin\System.Web.WebPages.Razor.dll
+C:\Tools\BugTracker-master\BugTracker\bin\WebGrease.dll
+C:\Tools\BugTracker-master\BugTracker\bin\System.Web.Helpers.xml
+C:\Tools\BugTracker-master\BugTracker\bin\System.Web.Mvc.xml
+C:\Tools\BugTracker-master\BugTracker\bin\System.Web.Optimization.xml
+C:\Tools\BugTracker-master\BugTracker\bin\System.Web.Razor.xml
+C:\Tools\BugTracker-master\BugTracker\bin\System.Web.WebPages.xml
+C:\Tools\BugTracker-master\BugTracker\bin\System.Web.WebPages.Deployment.xml
+C:\Tools\BugTracker-master\BugTracker\bin\System.Web.WebPages.Razor.xml
+C:\Tools\BugTracker-master\BugTracker\bin\Antlr3.Runtime.pdb
+C:\Tools\BugTracker-master\BugTracker\bin\Newtonsoft.Json.xml
+C:\Tools\BugTracker-master\BugTracker\bin\EntityFramework.xml
+C:\Tools\BugTracker-master\BugTracker\bin\EntityFramework.SqlServer.xml
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.xml
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Security.xml
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Security.Google.xml
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Tools\BugTracker-master\BugTracker\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Tools\BugTracker-master\BugTracker\obj\Debug\BugTracker.csprojResolveAssemblyReference.cache
+C:\Tools\BugTracker-master\BugTracker\obj\Debug\BugTracker.dll
+C:\Tools\BugTracker-master\BugTracker\obj\Debug\BugTracker.pdb
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\BugTracker.dll.config
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\BugTracker.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\BugTracker.pdb
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Antlr3.Runtime.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\EntityFramework.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\EntityFramework.SqlServer.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Security.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Newtonsoft.Json.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Owin.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\SendGrid.SmtpApi.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\SendGridMail.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\System.Web.Helpers.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\System.Web.Mvc.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\System.Web.Optimization.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\System.Web.Razor.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\System.Web.WebPages.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\System.Web.WebPages.Razor.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\WebGrease.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\System.Web.Helpers.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\System.Web.Mvc.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\System.Web.Optimization.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\System.Web.Razor.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\System.Web.WebPages.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\System.Web.WebPages.Razor.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Antlr3.Runtime.pdb
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Newtonsoft.Json.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\EntityFramework.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\EntityFramework.SqlServer.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Security.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\obj\Debug\BugTracker.csprojResolveAssemblyReference.cache
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\obj\Debug\BugTracker.dll
+C:\Users\Hammad\Documents\Visual Studio 2013\Projects\BugTracker-master-master\BugTracker-master-master\BugTracker\obj\Debug\BugTracker.pdb

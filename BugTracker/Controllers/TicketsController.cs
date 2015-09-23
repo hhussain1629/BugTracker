@@ -67,7 +67,7 @@ namespace BugTracker.Controllers
 
 
         // GET: Tickets
-        [Authorize]
+        //[Authorize]
         public ActionResult Index(string lType)
         {
 
@@ -133,7 +133,7 @@ namespace BugTracker.Controllers
 
 
         // GET: Tickets/Details/5
-        [Authorize]
+        //[Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -218,7 +218,7 @@ namespace BugTracker.Controllers
 
 
         // GET: Tickets/Create
-        [Authorize]
+        //[Authorize]
         public ActionResult Create()
         {
             ViewBag.ProjectList = new SelectList(PHelper.ListProjects(), "Id", "Name");
@@ -249,7 +249,7 @@ namespace BugTracker.Controllers
         }
 
         // GET: Tickets/Edit/5
-        [Authorize(Roles = "Admin, Project Manager, Developer")]
+        //[Authorize(Roles = "Admin, Project Manager, Developer")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

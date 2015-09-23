@@ -12,7 +12,7 @@ namespace BugTracker.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: TicketNotification
-        [Authorize (Roles="Developer")]
+        //[Authorize (Roles="Developer")]
         public ActionResult Index(string id)
         {
             if (id == null)

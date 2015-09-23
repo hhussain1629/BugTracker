@@ -23,7 +23,7 @@ namespace BugTracker.Controllers
 
 
         // GET: Projects
-        [Authorize(Roles = "Admin, Project Manager, Developer")]
+        //[Authorize(Roles = "Admin, Project Manager, Developer")]
         public ActionResult Index()
         {
             if (User.IsInRole("Admin"))
@@ -57,19 +57,6 @@ namespace BugTracker.Controllers
             //ViewBag.UsersOnProj = new SelectList(PHelper.ListUsersOnProject(id), "Id", "DisplayName");
             return View(project);
         }
-
-        // POST: Projects/Details/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Details([Bind(Include ="Personnel")] Project project)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(project).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //    }
-        //    return View(project);
-        //}
 
         // GET: Projects/Manage
         [Authorize(Roles = "Admin, Project Manager")]
@@ -116,7 +103,7 @@ namespace BugTracker.Controllers
 
 
         // GET: Projects/Create
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -139,7 +126,7 @@ namespace BugTracker.Controllers
         }
 
         // GET: Projects/Edit/5
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -196,25 +183,6 @@ namespace BugTracker.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-        ////GET: Projects/AssignUserToProject
-        //[Authorize(Roles = "Admin, Project Manager")]
-        //public ActionResult AssignUserToProject()
-        //{
-        //    ViewBag.projectList = db.Projects.ToList();
-        //    ViewBag.userList = db.Users.ToList();
-        //    return View();
-        //}
-
-        ////POST: 
-        //[HttpPost, ActionName("AssignUserToProject")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult AssignUserToProject(string userId, int projectId)
-        //{
-        //    PHelper.AddUserToProject(userId, projectId);
-        //    return View(); //This will probably change.
-        //}
 
 
         protected override void Dispose(bool disposing)

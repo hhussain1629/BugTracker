@@ -165,8 +165,8 @@ namespace BugTracker.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    var roleresult = URH.AddUserToRole(user.Id, "Admin"); //For demonstration purposes; later, change initial role to "Submitter".
-                    return RedirectToAction("Login", "Account");
+                    var roleresult = URH.AddUserToRole(user.Id, "Submitter"); 
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }

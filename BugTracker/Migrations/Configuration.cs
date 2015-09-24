@@ -49,6 +49,20 @@ namespace BugTracker.Migrations
 
             //me = context.Users.FirstOrDefault(m => m.Email == "hhussain1629@gmail.com");
 
+            if (!context.Users.Any(u => u.Email == "guest@bugstalker.com"))
+            {
+                userManager.Create(new ApplicationUser
+                {
+                    UserName = "guest@bugstalker.com",
+                    Email = "guest@bugstalker.com",
+                    FirstName = "Guest",
+                    LastName = "User",
+                    DisplayName = "Guest"
+                }, "Password#1");
+            }
+            var userId = userManager.FindByEmail("guest@bugstalker.com").Id;
+            userManager.AddToRole(userId, "Admin");
+
             if (!context.Users.Any(u => u.Email == "hhussain1629@gmail.com"))
             {
                 userManager.Create(new ApplicationUser
@@ -60,7 +74,7 @@ namespace BugTracker.Migrations
                     DisplayName = "Hammad Hussain"
                 }, "password");
             }
-            var userId = userManager.FindByEmail("hhussain1629@gmail.com").Id;
+            userId = userManager.FindByEmail("hhussain1629@gmail.com").Id;
             userManager.AddToRole(userId, "Admin");
 
             if (!context.Users.Any(u => u.Email == "ajensen@coderfoundry.com"))

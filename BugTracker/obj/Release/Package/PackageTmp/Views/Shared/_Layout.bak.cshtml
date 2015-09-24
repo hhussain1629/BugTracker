@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Bug Stalker</title>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="/DataTables-1.10.7/media/css/jquery.dataTables.css">
+    <!-- jQuery -->
+    @*<script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.js"></script>*@
+    <!-- DataTables -->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    @using Microsoft.AspNet.Identity;
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("Bug Stalker", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    @*<li>@Html.ActionLink("About", "About", "Home")</li>*@
+                    @if ((User.IsInRole("Admin")) || (User.IsInRole("Project Manager")) || User.IsInRole("Developer"))
+                    {
+                        <li>@Html.ActionLink("Projects", "Index", "Projects", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Roles", "Personnel", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Tickets", "Index", "Tickets", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    }
+                    @if (User.IsInRole("Developer"))
+                    {
+                        var userId = User.Identity.GetUserId();
+                        <li>@Html.ActionLink("Ticket Notifications", "Index", "TicketNotifications", new { id = userId }, new { @class = "navbar-brand" })</li>
+                    }
+                    @*@if (User.IsInRole("Admin") || User.IsInRole ("Project Manager") || User.IsInRole("Developer"))
+                    {
+                        <li>@Html.ActionLink("E-mail", "Email", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    }*@
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Hammad Hussain</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+    <script>
+        $(function () {
+            // Determine timezone offset in milliseconds
+            // from: http://www.w3schools.com/jsref/jsref_getTimezoneOffset.asp
+            var d = new Date()
+            var offsetms = d.getTimezoneOffset() * 60 * 1000;
+            $('.UTCTime').each(function () {
+                try {
+                    var text = $(this).html();
+                    if (text.trim() != 0) {
+                        var n = new Date(text);
+                        n = new Date(n.valueOf() - offsetms + 4*60*60*1000);
+
+                        $(this).html(n.toDateString() + " " + n.toLocaleTimeString());
+
+                        $(this).attr("Converted from UTC " + text);
+                    }
+                }
+                catch (ex) {
+                    console.warn("Error converting time", ex);
+                }
+            });
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

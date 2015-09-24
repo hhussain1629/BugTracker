@@ -1,59 +1,57 @@
 ﻿@model IEnumerable<BugTracker.Models.TicketNotification>
-
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Ticket notifications for @ViewBag.DisplayName</h2>
-
-<br /> <br />
-
-
-<table class="table table-striped table-hover " id="tableformat1">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Ticket.Title)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.DateTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Purpose)
-            </th>
-        </tr>
-    </thead>
-
-    @foreach (var item in Model)
-    {
-        <tbody>
-            <tr>
-                <td>
-                    @{
-                        string title = item.Ticket.Title;
-                        @Html.ActionLink(title, "Details", "Tickets", new { id = item.TicketId }, null)
-                    }
-                </td>
-
-                <td class ="UTCTime">
-                    @Html.DisplayFor(modelItem => item.DateTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Purpose)
-                </td>
-            </tr>
-        </tbody>
+<style>
+    tr {
+        color: black;
     }
+</style>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h2>Ticket notifications for @ViewBag.DisplayName</h2>
+        <br /> <br />
 
-</table>
-
-@Html.ActionLink("See tickets", "Index", "Tickets")
-
-@section Scripts{
-    <script>
-        $(document).ready(function () {
-            $('#tableformat1').DataTable();
-        });
-    </script>
-}
+        <table class="table table-striped table-hover " id="tableformat1">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ticket.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Purpose)
+                    </th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td>
+                            @{
+                string title = item.Ticket.Title;
+                @Html.ActionLink(title, "Details", "Tickets", new { id = item.TicketId }, null)
+                            }
+                        </td>
+                        <td class="UTCTime">
+                            @Html.DisplayFor(modelItem => item.DateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Purpose)
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+        @Html.ActionLink("See tickets", "Index", "Tickets")
+        </div></div>
+        @section Scripts{
+            <script>
+                $(document).ready(function () {
+                    $('#tableformat1').DataTable();
+                });
+            </script>
+        }

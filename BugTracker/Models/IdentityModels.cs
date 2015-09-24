@@ -43,18 +43,18 @@ namespace BugTracker.Models
         //public virtual ICollection<TicketComment> Comments { get; set; }
         //public virtual ICollection<TicketAttachment> Attachments { get; set; }
         //public virtual ICollection<TicketHistory> Histories { get; set; }
-        
 
-        
+
+
     }
 
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-           : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection", throwIfV1Schema: false)
         //public ApplicationDbContext()
-          //  : base("HussainsDB", throwIfV1Schema: false)
+        //: base("HussainsDB", throwIfV1Schema: false)
         {
         }
 
@@ -73,6 +73,6 @@ namespace BugTracker.Models
         public DbSet<TicketNotification> TicketNotifications { get; set; }
         public DbSet<Project> Projects { get; set; }
 
-       
+
     }
 }

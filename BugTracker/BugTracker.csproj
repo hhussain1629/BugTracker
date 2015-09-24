@@ -523,11 +523,14 @@
     <Content Include="font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\4329436.png" />
     <Content Include="Images\GKfly1.png" />
     <Content Include="Images\GKfly2.png" />
     <Content Include="Images\GKfly3.png" />
     <Content Include="Images\GKfly4.png" />
     <Content Include="Images\leopard-gecko-yellow-head.jpg" />
+    <Content Include="Images\oie_FOjwLuaOnxuu.png" />
+    <Content Include="Images\profile.png" />
     <Content Include="Images\realGK.png" />
     <Content Include="img\portfolio\cabin.png" />
     <Content Include="img\portfolio\cake.png" />
@@ -677,6 +680,8 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Shared\_Layout.bak3.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.bak2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

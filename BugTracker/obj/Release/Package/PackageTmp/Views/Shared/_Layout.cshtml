@@ -59,12 +59,15 @@
         .table {
             color: black;
         }
+        /*.navbar-brand{
+            text-transform:capitalize;
+        }*/
     </style>
 </head>
 <body id="page-top" class="index" style="background: #18bc9c">
     @using Microsoft.AspNet.Identity;
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    @*<nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -74,13 +77,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @*<a class="navbar-brand" href="#page-top">Start</a>*@
+               
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav cfont">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                    @*<li>@Html.ActionLink("About", "About", "Home")</li>*@
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
                     @if ((User.IsInRole("Admin")) || (User.IsInRole("Project Manager")) || User.IsInRole("Developer"))
                     {
                         <li>@Html.ActionLink("Projects", "Index", "Projects", new { area = "" }, new { @class = "navbar-brand" })</li>
@@ -108,6 +111,59 @@
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
+    </nav>*@
+
+    <nav class="navbar navbar-default navbar-fixed-top" style="padding-right:10px">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="col-md-1">
+                    @*<a href="@Url.Action("Index", "Home")"><img class="img-responsive img-circle" src="~/Images/4329436.png" alt="" width="60" height="60"></a>*@
+                    <a href="https://hhussain.azurewebsites.net/Home/Index/#header" target="_blank"><img class="img-responsive img-circle" src="~/Images/4329436.png" alt="" width="60" height="60"></a>
+                </div>
+                <div class="">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header page-scroll">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @*<a class="navbar-brand" href="#page-top">Start</a>*@
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav cfont">
+                            @*<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>*@
+                            @*<li>@Html.ActionLink("About", "About", "Home")</li>*@
+                            @if ((User.IsInRole("Admin")) || (User.IsInRole("Project Manager")) || User.IsInRole("Developer"))
+                            {
+                                <li>@Html.ActionLink("Projects", "Index", "Projects", new { area = "" }, new { @class = "navbar-brand" })</li>
+                            }
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li>@Html.ActionLink("Roles", "Personnel", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                            }
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("Tickets", "Index", "Tickets", new { area = "" }, new { @class = "navbar-brand" })</li>
+                            }
+                            @if (User.IsInRole("Developer"))
+                            {
+                                var userId = User.Identity.GetUserId();
+                                <li>@Html.ActionLink("Ticket Notifications", "Index", "TicketNotifications", new { id = userId }, new { @class = "navbar-brand" })</li>
+                            }
+
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
     </nav>
     <header class="body-content">
         <br />

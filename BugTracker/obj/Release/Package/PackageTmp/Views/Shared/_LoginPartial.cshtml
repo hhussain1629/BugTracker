@@ -13,20 +13,88 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
+    @*<ul class="nav navbar-nav navbar-right">
         <li>
            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Home")
-            @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li ><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>*@
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown profile hidden-xs">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="meta">
+                    <span class="icon">
+                        <span class="icon">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </span>
+                    <span class="dropdown-toggle text" dropdown-toggle>Signed in as: @User.Identity.GetUserName()</span>
+                    <span class="caret"></span>
+                </span>
+            </a>
+            <ul class="dropdown-menu animated flipInX" role="menu">
+
+                <li>
+                    <a href="javascript:void(0);">
+                        <span class="icon">
+                            <i class="fa fa-envelope"></i>
+                        </span>Notifications
+                    </a>
+                </li>
+
+                <li class="divider"></li>
+                <li>
+                    <a href="javascript:document.getElementById('logoutForm').submit()">
+                        <span class="icon">
+                            <i class="fa fa-sign-out"></i>
+                        </span>Log Out
+                    </a>
+                </li>
+            </ul>
+        </li>
     </ul>
     }
-    
+
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
+    @*<ul class="nav navbar-nav navbar-right">
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>*@
+
+    <ul class="nav navbar-nav navbar-right">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <li class="dropdown profile hidden-xs">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="meta">
+                        <span class="icon">
+                            <i class="fa fa-bookmark"></i>
+                        </span>
+                        <span class="text">Login/Register</span>
+                        <span class="caret"></span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu animated flipInX" role="menu">
+                    <li class="divider"></li>
+                    <li>
+                        <a href="@Url.Action("Login", "Account")">
+                            <span class="icon">
+                                <i class="fa fa-sign-in"></i>
+                            </span>Login
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="@Url.Action("Register", "Account")">
+                            <span class="icon">
+                                <i class="fa fa-pencil-square-o"></i>
+                            </span>Register
+                        </a>
+                    </li>
+                </ul>
+            </li>}
     </ul>
 }

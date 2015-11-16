@@ -21,10 +21,6 @@ namespace BugTracker.Models
             this.Projects = new HashSet<Project>();
             this.TicketsOwned = new HashSet<Ticket>();
             this.TicketsAssigned = new HashSet<Ticket>();
-            //this.TicketNotifications = new HashSet<TicketNotification>();
-            //this.Comments = new HashSet<TicketComment>();
-            //this.Attachments = new HashSet<TicketAttachment>();
-            //this.Histories = new HashSet<TicketHistory>();
         }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -40,11 +36,6 @@ namespace BugTracker.Models
         [InverseProperty("AssignedToUser")]
         public virtual ICollection<Ticket> TicketsAssigned { get; set; }
         //public virtual ICollection<TicketNotification>TicketNotifications { get; set; }
-        //public virtual ICollection<TicketComment> Comments { get; set; }
-        //public virtual ICollection<TicketAttachment> Attachments { get; set; }
-        //public virtual ICollection<TicketHistory> Histories { get; set; }
-
-
 
     }
 

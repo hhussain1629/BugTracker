@@ -42,10 +42,10 @@ namespace BugTracker.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
         //public ApplicationDbContext()
-        //  : base("HussainsDB", throwIfV1Schema: false)
+        //   : base("DefaultConnection", throwIfV1Schema: false)
+        public ApplicationDbContext()
+          : base("HussainsDB", throwIfV1Schema: false)
         {
         }
 

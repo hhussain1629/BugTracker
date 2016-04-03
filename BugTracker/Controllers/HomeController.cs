@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Net;
 using SendGrid;
 using System.Net.Mail;
+using System.Data.Entity;
 
 namespace BugTracker.Controllers
 {
@@ -128,5 +129,36 @@ namespace BugTracker.Controllers
             db.SaveChanges();
             return RedirectToAction("EditRoles", "Home", user);
         }
+
+        ////GET: Home/EditProfile
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult EditProfile(string id)
+        //{
+        //    var person = db.Users.Find(id);
+        //    ViewBag.message = "";
+        //    return View(person);
+        //}
+
+        ////POST: Home/EditProfile
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult EditProfile ([Bind(Include = "Id,FirstName,LastName,DisplayName,Email")] ApplicationUser person)
+        //{ 
+        //    if (ModelState.IsValid)
+        //    {
+        //        var Email = person.Email;
+        //        if (db.Users.Any(u => u.Email == Email))
+        //        {
+        //            ViewBag.message = "The E-mail address " + Email + " is already in use. Please choose a different one.";
+        //        }
+        //        else
+        //        {
+        //            db.Entry(person).State = EntityState.Modified;
+        //            db.SaveChanges();
+        //            ViewBag.message = "The profile has been changed.";
+        //        }
+        //    }
+        //    return View(person);
+        //}
     }
 }

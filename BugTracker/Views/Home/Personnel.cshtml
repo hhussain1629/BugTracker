@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<BugTracker.Models.ApplicationUser>
 
+
 @{
     ViewBag.Title = "Roles";
 }
@@ -72,6 +73,13 @@
                 @Html.ActionLink("Edit Roles", "EditRoles", new { id = item.Id })
 
             </td>
+            @*@if (User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.ActionLink("Profile", "EditProfile", new { id = item.Id })
+                </td>  
+            }*@
+                
         </tr>
 
     }
